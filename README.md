@@ -1,8 +1,4 @@
-<div align="center">
-
-# K-Commit
-
-</div>
+<h1 align="center">K-Commit</h1>
 
 O **K-Commit** é um padrão personalizado para mensagens de commit, combinando as boas práticas de:
 
@@ -91,8 +87,6 @@ Contribuições são bem-vindas! Ao enviar um Pull Request, siga o padrão **K-C
 
 ---
 
-<div align="center">
-
+<p align="center">
 Feito com ❤️ por <a href="https://github.com/KaduKessler" target="_blank">Kadu</a>.
-
-</div>
+</p>
