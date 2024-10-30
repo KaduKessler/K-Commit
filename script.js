@@ -28,16 +28,17 @@ const tipos = [
     { tipo: 'ci', emote: '🚀', descricao: 'CI/CD' },
     { tipo: 'build', emote: '🏗️', descricao: 'Build ou dependências' },
     { tipo: 'remove', emote: '🔥', descricao: 'Remoção de código' },
+    { tipo: 'init', emote: '🎉', descricao: 'Início do projeto' }
 ];
 
 // Função para atualizar a pré-visualização
 function atualizarPreview() {
-    const tipo = tipoInput.value || 'feat';
+    const tipo = tipoInput.value || 'init';
     const emote = emoteCorrespondente(tipo);
     const escopo = escopoInput.value ? `(${escopoInput.value})` : '';
     const isBreakingChange = breakingChangeCheckbox.checked;
     const breakingChange = isBreakingChange ? '!' : '';
-    const descricao = descricaoInput.value || 'Descrição breve';
+    const descricao = descricaoInput.value || 'Primeiro commit';
     const mensagemAdicional = mensagemInput.value ? `\n\n${mensagemInput.value}` : '';
     const rodape = rodapeInput.value ? `\n\n${rodapeInput.value}` : '';
 
@@ -108,7 +109,7 @@ copyBtn.addEventListener('click', () => {
 clearBtn.addEventListener('click', () => {
     [tipoInput, escopoInput, descricaoInput, mensagemInput, rodapeInput].forEach(input => input.value = '');
     breakingChangeCheckbox.checked = false;
-    emoteSpan.textContent = '✨';
+    emoteSpan.textContent = '🎉';
     atualizarPreview();
 });
 
