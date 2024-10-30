@@ -215,6 +215,16 @@ form {
   color: #ff4c4c; /* Vermelho para indicar que a mensagem está longa */
 }
 
+/* Ocultar o contador inicialmente */
+.char-counter.hidden {
+  display: none;
+}
+
+/* Exibir o contador quando ativo */
+.char-counter.active {
+  display: block;
+}
+
 /* Emote */
 .emote {
   position: absolute;

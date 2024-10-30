@@ -121,7 +121,7 @@ function atualizarContador(input, counter, limite) {
     const length = input.value.length;
     counter.textContent = `${length} caracteres`;
 
-    // Adiciona ou remove a classe de aviso quando necessário
+    // Exibe o contador se houver texto além do limite recomendado
     if (length > limite) {
         counter.classList.add('warning');
     } else {
@@ -129,15 +129,33 @@ function atualizarContador(input, counter, limite) {
     }
 }
 
-// Atualiza com um limite (50 para escopo, 72 para descrição)
+// Função para exibir o contador
+function mostrarContador(counter) {
+    counter.classList.add('active');
+}
+
+// Função para ocultar o contador se o campo estiver vazio
+function ocultarContador(input, counter) {
+    if (input.value === '') {
+        counter.classList.remove('active');
+    }
+}
+
+// Adicionando eventos aos inputs
+escopoInput.addEventListener('focus', () => mostrarContador(escopoCounter));
+escopoInput.addEventListener('blur', () => ocultarContador(escopoInput, escopoCounter));
 escopoInput.addEventListener('input', () => atualizarContador(escopoInput, escopoCounter, 50));
+
+descricaoInput.addEventListener('focus', () => mostrarContador(descricaoCounter));
+descricaoInput.addEventListener('blur', () => ocultarContador(descricaoInput, descricaoCounter));
 descricaoInput.addEventListener('input', () => atualizarContador(descricaoInput, descricaoCounter, 72));
 
 // Inicializa os contadores ao carregar a página
 window.addEventListener('load', () => {
-    atualizarContador(escopoInput, escopoCounter);
-    atualizarContador(descricaoInput, descricaoCounter);
+    atualizarContador(escopoInput, escopoCounter, 50);
+    atualizarContador(descricaoInput, descricaoCounter, 72);
 });
+
 
 
 // Controle de som
