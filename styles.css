@@ -33,10 +33,80 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: "Inter", sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
+}
+
+/* Cabeçalho */
+.header {
+  width: 100%;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo h1 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.header-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.icon-button:hover {
+  color: var(--accent-color);
+}
+
+.icon-button:focus {
+  outline: none;
+}
+
+.icon-button .fa-moon,
+.icon-button .fa-sun {
+  animation: rotate 0.5s;
+}
+
+.icon-button .fa-volume-up,
+.icon-button .fa-volume-mute {
+  animation: scale 0.5s;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* Container principal */
@@ -44,17 +114,8 @@ body {
   width: 100%;
   max-width: 600px;
   padding: 20px;
-}
-
-/* Cabeçalho */
-header {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-header h1 {
-  font-size: 32px;
-  font-weight: 500;
+  margin: 0 auto;
+  margin-top: 70px; /* Ajuste para o cabeçalho */
 }
 
 /* Formulário */
@@ -196,29 +257,6 @@ form {
 }
 
 .buttons button:hover {
-  background-color: var(--button-hover-bg);
-}
-
-/* Botões de Preferências */
-.preferences {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
-.preferences button {
-  flex: 1;
-  padding: 12px;
-  background-color: var(--button-bg);
-  border: none;
-  border-radius: 5px;
-  color: var(--text-color);
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.preferences button:hover {
   background-color: var(--button-hover-bg);
 }
 

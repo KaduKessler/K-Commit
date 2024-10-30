@@ -12,6 +12,8 @@ const copyBtn = document.getElementById('copy-btn');
 const clearBtn = document.getElementById('clear-btn');
 const toggleSoundBtn = document.getElementById('toggle-sound');
 const toggleThemeBtn = document.getElementById('toggle-theme');
+const soundIcon = document.getElementById('sound-icon');
+const themeIcon = document.getElementById('theme-icon');
 
 // Lista dos tipos e emojis
 const tipos = [
@@ -115,7 +117,14 @@ let soundEnabled = true; // Som habilitado por padrão
 
 toggleSoundBtn.addEventListener('click', () => {
     soundEnabled = !soundEnabled;
-    toggleSoundBtn.textContent = soundEnabled ? 'Desativar Som' : 'Ativar Som';
+    // Alternar ícone
+    if (soundEnabled) {
+        soundIcon.classList.remove('fa-volume-mute');
+        soundIcon.classList.add('fa-volume-up');
+    } else {
+        soundIcon.classList.remove('fa-volume-up');
+        soundIcon.classList.add('fa-volume-mute');
+    }
 
     // Salvar a preferência no localStorage
     localStorage.setItem('soundEnabled', soundEnabled);
@@ -125,7 +134,15 @@ toggleSoundBtn.addEventListener('click', () => {
 toggleThemeBtn.addEventListener('click', () => {
     document.body.classList.toggle('light-mode');
     const isLightMode = document.body.classList.contains('light-mode');
-    toggleThemeBtn.textContent = isLightMode ? 'Alternar para Tema Escuro' : 'Alternar para Tema Claro';
+
+    // Alternar ícone
+    if (isLightMode) {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+    }
 
     // Salvar a preferência no localStorage
     localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
@@ -137,17 +154,25 @@ window.addEventListener('load', () => {
     const savedSoundPreference = localStorage.getItem('soundEnabled');
     if (savedSoundPreference !== null) {
         soundEnabled = savedSoundPreference === 'true';
-        toggleSoundBtn.textContent = soundEnabled ? 'Desativar Som' : 'Ativar Som';
+        if (soundEnabled) {
+            soundIcon.classList.remove('fa-volume-mute');
+            soundIcon.classList.add('fa-volume-up');
+        } else {
+            soundIcon.classList.remove('fa-volume-up');
+            soundIcon.classList.add('fa-volume-mute');
+        }
     }
 
     // Preferência de tema
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
         document.body.classList.add('light-mode');
-        toggleThemeBtn.textContent = 'Alternar para Tema Escuro';
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
     } else {
         document.body.classList.remove('light-mode');
-        toggleThemeBtn.textContent = 'Alternar para Tema Claro';
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
     }
 });
 
