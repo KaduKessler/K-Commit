@@ -211,6 +211,10 @@ form {
   margin-top: 5px;
 }
 
+.char-counter.warning {
+  color: #ff4c4c; /* Vermelho para indicar que a mensagem está longa */
+}
+
 /* Emote */
 .emote {
   position: absolute;

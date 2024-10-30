@@ -117,15 +117,21 @@ clearBtn.addEventListener('click', () => {
 const escopoCounter = document.getElementById('escopo-counter');
 const descricaoCounter = document.getElementById('descricao-counter');
 
-// Função para atualizar o contador de caracteres
-function atualizarContador(input, counter) {
+function atualizarContador(input, counter, limite) {
     const length = input.value.length;
     counter.textContent = `${length} caracteres`;
+
+    // Adiciona ou remove a classe de aviso quando necessário
+    if (length > limite) {
+        counter.classList.add('warning');
+    } else {
+        counter.classList.remove('warning');
+    }
 }
 
-// Adiciona eventos para atualizar em tempo real
-escopoInput.addEventListener('input', () => atualizarContador(escopoInput, escopoCounter));
-descricaoInput.addEventListener('input', () => atualizarContador(descricaoInput, descricaoCounter));
+// Atualiza com um limite (50 para escopo, 72 para descrição)
+escopoInput.addEventListener('input', () => atualizarContador(escopoInput, escopoCounter, 50));
+descricaoInput.addEventListener('input', () => atualizarContador(descricaoInput, descricaoCounter, 72));
 
 // Inicializa os contadores ao carregar a página
 window.addEventListener('load', () => {
