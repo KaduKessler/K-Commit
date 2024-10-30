@@ -113,6 +113,27 @@ clearBtn.addEventListener('click', () => {
     atualizarPreview();
 });
 
+// Seleção dos elementos de entrada e contadores
+const escopoCounter = document.getElementById('escopo-counter');
+const descricaoCounter = document.getElementById('descricao-counter');
+
+// Função para atualizar o contador de caracteres
+function atualizarContador(input, counter) {
+    const length = input.value.length;
+    counter.textContent = `${length} caracteres`;
+}
+
+// Adiciona eventos para atualizar em tempo real
+escopoInput.addEventListener('input', () => atualizarContador(escopoInput, escopoCounter));
+descricaoInput.addEventListener('input', () => atualizarContador(descricaoInput, descricaoCounter));
+
+// Inicializa os contadores ao carregar a página
+window.addEventListener('load', () => {
+    atualizarContador(escopoInput, escopoCounter);
+    atualizarContador(descricaoInput, descricaoCounter);
+});
+
+
 // Controle de som
 let soundEnabled = true; // Som habilitado por padrão
 
