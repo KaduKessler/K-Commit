@@ -6,15 +6,36 @@ O **K-Commit** é um padrão personalizado para mensagens de commit, combinando 
 - [**GitMoji**](https://gitmoji.dev/): Uso de emojis para transmitir visualmente o tipo de mudança.
 - **Toque pessoal**: Adaptações que tornam o processo mais claro e agradável.
 
+---
+
+## 🌐 K-Commit Generator
+
+Para facilitar a criação de mensagens de commit seguindo o padrão **K-Commit**, desenvolvi um site interativo:
+
+- **[Acesse o K-Commit Generator](https://kadukessler.github.io/K-Commit/)**
+
+### **Funcionalidades do Gerador**
+
+- **Auto-complete**: Sugestões para tipos de commit.
+- **Pré-visualização em tempo real**: Acompanhe a mensagem conforme digita.
+- **Opção de BREAKING CHANGE**: Marque quando houver mudanças incompatíveis.
+- **Personalização de Tema**: Alterne entre tema claro e escuro.
+- **Sons de Teclas**: Interatividade ao digitar, com controle de ativação.
+- **Copiar e Limpar**: Botões para copiar ou resetar a mensagem facilmente.
+
+---
+
 ## 📐 Estrutura do K-Commit
 
 ```text
-<emote> <tipo>[escopo opcional][!]: <descrição>
+<emote> <tipo>(<escopo opcional>)[!]: <descrição>
 
 [corpo opcional]
 
 [rodapé(s) opcional(is)]
 ```
+
+---
 
 ### 🔍 Componentes
 
@@ -24,7 +45,20 @@ O **K-Commit** é um padrão personalizado para mensagens de commit, combinando 
 4. **Exclamação (opcional)**: Indica uma **BREAKING CHANGE** quando adicionada após o tipo ou escopo.
 5. **Descrição**: Resumo breve e claro da mudança.
 6. **Corpo (opcional)**: Explicação mais detalhada sobre a mudança.
-7. **Rodapé(s) (opcional)**: Informações adicionais como referências a issues.
+7. **Rodapé(s) (opcional)**: Informações adicionais, como referências a issues.
+
+---
+
+## 🧾 **Boas Práticas**
+
+- **Commits pequenos e frequentes**: Facilitam o acompanhamento das mudanças.
+- **Descrição clara**: Indica o que foi alterado e o motivo.
+- **Escopo opcional, mas recomendado**: Em projetos maiores, especifica a área afetada.
+- **Rodapés para informações extras**: Como referências a issues.
+- **Uso do imperativo**: As mensagens de commit devem começar com verbos no modo imperativo (ex.: "Adiciona", "Corrige").
+- **Consistência**: Mantenha o uso consistente de emojis e formatos de mensagem.
+
+---
 
 ## 💡 Exemplo de Uso
 
@@ -42,21 +76,9 @@ Tratado o envio de formulário vazio para evitar erros.
 Resolves: #42
 ```
 
-```text
-🔥 remove(auth): remove suporte à autenticação por cookie
-
-BREAKING CHANGE: A autenticação baseada em cookie foi removida.
-```
-
-```text
-✨ feat!: adiciona autenticação JWT
-
-BREAKING CHANGE: A autenticação antiga baseada em cookies foi removida.
-```
+---
 
 ## 🔄 **Tipos de Commit e Emojis**
-
-A tabela abaixo combina os tipos de commit e seus emojis correspondentes, tornando o histórico mais visual e fácil de entender.
 
 | **Emoji** | **Tipo** | **Descrição**                                           |
 | --------- | -------- | ------------------------------------------------------- |
@@ -72,18 +94,60 @@ A tabela abaixo combina os tipos de commit e seus emojis correspondentes, tornan
 | 🚀        | ci       | Alterações em pipelines de CI/CD.                       |
 | 🏗️        | build    | Modificações no processo de build ou dependências.      |
 
-## 🧾 **Boas Práticas**
+---
 
-- **Commits pequenos e frequentes**: Facilitam o acompanhamento das mudanças.
-- **Descrição clara**: Indica o que foi alterado e o motivo.
-- **Escopo opcional, mas recomendado**: Em projetos maiores, especifica a área afetada.
-- **Rodapés para informações extras**: Como referências a issues.
-- **Uso do imperativo**: As mensagens de commit devem começar com verbos no modo imperativo (ex.: "Adiciona", "Corrige").
-- **Consistência**: Mantenha o uso consistente de emojis e formatos de mensagem.
+## 🛠️ **Instalação Local**
+
+Se preferir executar o gerador localmente:
+
+### **Passos**
+
+1. **Clone o repositório:**
+
+   ```bash
+   git clone https://github.com/KaduKessler/K-Commit.git
+   ```
+
+2. **Navegue até o diretório:**
+
+   ```bash
+   cd K-Commit
+   ```
+
+3. **Abra o `index.html` no navegador:**
+
+   ```bash
+   xdg-open index.html  # Linux
+   open index.html      # macOS
+   start index.html     # Windows
+   ```
+
+---
 
 ## 🤝 **Contribuição**
 
-Contribuições são bem-vindas! Ao enviar um Pull Request, siga o padrão **K-Commit** nas mensagens de commit.
+Contribuições são bem-vindas! Siga estas etapas para enviar sua contribuição:
+
+1. **Fork o repositório**.
+2. **Crie uma branch** para sua feature:
+
+   ```bash
+   git checkout -b minha-feature
+   ```
+
+3. **Faça commit das suas mudanças**:
+
+   ```bash
+   git commit -m "feat: minha nova feature"
+   ```
+
+4. **Envie para o repositório remoto**:
+
+   ```bash
+   git push origin minha-feature
+   ```
+
+5. **Abra um Pull Request**.
 
 ---
 
