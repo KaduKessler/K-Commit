@@ -152,5 +152,5 @@ Contribuições são bem-vindas! Siga estas etapas para enviar sua contribuiçã
 ---
 
 <p align="center">
-Feito com ❤️ por <a href="https://github.com/KaduKessler" target="_blank">Kadu</a>.
+Feito com ☕ por <a href="https://github.com/KaduKessler" target="_blank">Kadu</a>.
 </p>
