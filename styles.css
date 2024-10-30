@@ -1,0 +1,256 @@
+/* Importação da fonte */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Variáveis de cores */
+:root {
+  --bg-color: #1a1a1a;
+  --text-color: #e6e6e6;
+  --accent-color: #0c8ce9; /* Cor de destaque azul */
+  --input-bg: #2a2a2a;
+  --input-border: #3a3a3a;
+  --button-bg: #333333;
+  --button-hover-bg: #444444;
+}
+
+body.light-mode {
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --input-bg: #f0f0f0;
+  --input-border: #cccccc;
+  --button-bg: #e0e0e0;
+  --button-hover-bg: #d0d0d0;
+}
+
+/* Estilo do corpo */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Inter", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Container principal */
+.container {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+}
+
+/* Cabeçalho */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+/* Formulário */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  padding: 12px;
+  border-radius: 5px;
+  color: var(--text-color);
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent-color);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Estilo do Checkbox */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.checkbox-group input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 2px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.checkbox-group input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 10px;
+  border: solid var(--text-color);
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+  opacity: 0;
+}
+
+.checkbox-group input[type="checkbox"]:checked::before {
+  opacity: 1;
+}
+
+/* Emote */
+.emote {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+}
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 5px;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.dropdown li {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdown li:hover {
+  background-color: var(--button-hover-bg);
+}
+
+/* Botões */
+.buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.buttons button {
+  flex: 1;
+  padding: 12px;
+  background-color: var(--button-bg);
+  border: none;
+  border-radius: 5px;
+  color: var(--text-color);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.buttons button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+/* Botões de Preferências */
+.preferences {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.preferences button {
+  flex: 1;
+  padding: 12px;
+  background-color: var(--button-bg);
+  border: none;
+  border-radius: 5px;
+  color: var(--text-color);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.preferences button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+/* Pré-visualização */
+#preview-section {
+  margin-top: 30px;
+  text-align: center;
+}
+
+#preview-section h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+#preview-text {
+  background-color: var(--input-bg);
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-align: left;
+}
+
+/* Ocultar elementos */
+.hidden {
+  display: none;
+}
+
+/* Animações */
+input,
+textarea,
+button {
+  transition: background-color 0.3s, border-color 0.3s;
+}

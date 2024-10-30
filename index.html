@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Commit Generator</title>
+
+    <!-- Meta Tags para SEO -->
+    <meta name="description" content="Gere mensagens de commit seguindo o padrão K-Commit de forma fácil e rápida.">
+    <meta name="keywords" content="commit, git, K-Commit, gerador de commit, mensagens de commit">
+
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>K-Commit Generator</h1>
+        </header>
+
+        <main>
+            <form id="commit-form">
+                <!-- Tipo de Commit -->
+                <div class="form-group">
+                    <input type="text" id="tipo" placeholder="Tipo de Commit (e.g., feat, fix)" autocomplete="off">
+                    <span id="emote" class="emote">✨</span>
+                    <ul id="dropdown" class="dropdown hidden"></ul>
+                </div>
+
+                <!-- Escopo (Opcional) -->
+                <div class="form-group">
+                    <input type="text" id="escopo" placeholder="Escopo (opcional)">
+                </div>
+
+                <!-- Descrição -->
+                <div class="form-group">
+                    <input type="text" id="descricao" placeholder="Descrição do Commit">
+                </div>
+
+                <!-- Mensagem Adicional (Opcional) -->
+                <div class="form-group">
+                    <textarea id="mensagem" placeholder="Mensagem Adicional (opcional)"></textarea>
+                </div>
+
+                <!-- Rodapé (Opcional) -->
+                <div class="form-group">
+                    <input type="text" id="rodape" placeholder="Rodapé (opcional)">
+                </div>
+
+                <!-- BREAKING CHANGE -->
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="breaking-change">
+                        <span>BREAKING CHANGE</span>
+                    </label>
+                </div>
+
+                <!-- Botões -->
+                <div class="buttons">
+                    <button id="copy-btn" type="button">Copiar</button>
+                    <button id="clear-btn" type="button">Limpar</button>
+                </div>
+
+                <!-- Botões de Preferências -->
+                <div class="preferences">
+                    <button id="toggle-sound" type="button">Desativar Som</button>
+                    <button id="toggle-theme" type="button">Alternar para Tema Claro</button>
+                </div>
+            </form>
+
+            <!-- Pré-visualização -->
+            <section id="preview-section">
+                <h2>Pré-visualização</h2>
+                <pre id="preview-text">✨ feat: Descrição breve</pre>
+            </section>
+        </main>
+
+        <!-- JavaScript -->
+        <script src="script.js"></script>
+    </div>
+</body>
+
+</html>
