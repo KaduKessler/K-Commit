@@ -107,9 +107,24 @@ copyBtn.addEventListener('click', () => {
 
 // Botão de limpar
 clearBtn.addEventListener('click', () => {
+    // Limpa todos os campos de input
     [tipoInput, escopoInput, descricaoInput, mensagemInput, rodapeInput].forEach(input => input.value = '');
+
+    // Reseta o estado do checkbox
     breakingChangeCheckbox.checked = false;
+
+    // Reinicia o emote para 🎉 (primeiro commit)
     emoteSpan.textContent = '🎉';
+
+    // Atualiza os contadores para "0 caracteres"
+    escopoCounter.textContent = '0 caracteres';
+    descricaoCounter.textContent = '0 caracteres';
+
+    // Oculta os contadores após a limpeza
+    escopoCounter.classList.remove('active');
+    descricaoCounter.classList.remove('active');
+
+    // Atualiza a pré-visualização
     atualizarPreview();
 });
 
