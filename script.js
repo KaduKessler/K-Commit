@@ -162,7 +162,7 @@ function preloadKeySounds() {
         'H', 'I', 'J', 'K', 'L', 'M', 'N',
         'O', 'P', 'Q', 'R', 'S', 'T', 'U',
         'V', 'W', 'X', 'Y', 'Z',
-        'BACKSPACE', 'CAPSLOCK', 'ENTER', 'SPACE'
+        'BACKSPACE', 'CAPS LOCK', 'ENTER', 'SPACE'
     ];
 
     keys.forEach(key => {
@@ -185,11 +185,7 @@ function playKeySound(event) {
     let key = event.key.toUpperCase(); // Converter para maiúsculas para padronizar
 
     // Tratar teclas especiais
-    if (key === ' ') key = 'SPACE';
-    else if (key === 'BACKSPACE') key = 'BACKSPACE';
-    else if (key === 'CAPSLOCK') key = 'CAPSLOCK';
-    else if (key === 'ENTER') key = 'ENTER';
-    else if (!keySounds[key]) {
+    if (!keySounds[key]) {
         // Se não houver som específico, tocar um som aleatório
         const randomSound = availableKeySounds[Math.floor(Math.random() * availableKeySounds.length)];
         randomSound.currentTime = 0;
