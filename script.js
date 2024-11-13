@@ -39,6 +39,9 @@ let isGitCommandView = false;
 function alternarVisualizacao() {
     isGitCommandView = !isGitCommandView;
 
+    // Salvar o estado atual no localStorage
+    localStorage.setItem('isGitCommandView', isGitCommandView);
+
     if (isGitCommandView) {
         atualizarVisualizacaoGit();
         toggleViewBtn.textContent = 'Mostrar Pré-visualização Padrão';
@@ -47,6 +50,20 @@ function alternarVisualizacao() {
         toggleViewBtn.textContent = 'Mostrar Comando Git';
     }
 }
+
+// Carregar o estado da pré-visualização ao carregar a página
+window.addEventListener('load', () => {
+    const savedViewState = localStorage.getItem('isGitCommandView');
+    isGitCommandView = savedViewState === 'true';
+
+    if (isGitCommandView) {
+        atualizarVisualizacaoGit();
+        toggleViewBtn.textContent = 'Mostrar Pré-visualização Padrão';
+    } else {
+        atualizarPreview();
+        toggleViewBtn.textContent = 'Mostrar Comando Git';
+    }
+});
 
 // Função para atualizar visualização de comando git
 function atualizarVisualizacaoGit() {
