@@ -53,28 +53,38 @@ function emoteCorrespondente(tipo) {
     return match ? match.emote : '❔';
 }
 
-// Event Listener para o tipoInput (auto-complete)
+// Configuração do Fuse.js
+const fuseOptions = {
+    keys: ['tipo', 'descricao'],
+    threshold: 0.4, // Sensibilidade da busca (0 = exato, 1 = todos os resultados)
+};
+
+const fuse = new Fuse(tipos, fuseOptions);
+
+// Auto-complete de tipo com Fuse.js
 tipoInput.addEventListener('input', () => {
     const valor = tipoInput.value.toLowerCase();
     dropdown.innerHTML = '';
 
-    const filtrados = tipos.filter(t =>
-        t.tipo.includes(valor) || t.descricao.toLowerCase().includes(valor)
-    );
+    if (valor) {
+        const resultados = fuse.search(valor).slice(0, 5);
 
-    filtrados.forEach((t) => {
-        const li = document.createElement('li');
-        li.textContent = `${t.emote} ${t.tipo} - ${t.descricao}`;
-        li.addEventListener('click', () => {
-            tipoInput.value = t.tipo;
-            emoteSpan.textContent = t.emote;
-            dropdown.classList.add('hidden');
-            atualizarPreview();
+        resultados.forEach(({ item }) => {
+            const li = document.createElement('li');
+            li.textContent = `${item.emote} ${item.tipo} - ${item.descricao}`;
+            li.addEventListener('click', () => {
+                tipoInput.value = item.tipo;
+                emoteSpan.textContent = item.emote;
+                dropdown.classList.add('hidden');
+                atualizarPreview();
+            });
+            dropdown.appendChild(li);
         });
-        dropdown.appendChild(li);
-    });
 
-    dropdown.classList.toggle('hidden', filtrados.length === 0 || !valor);
+        dropdown.classList.remove('hidden');
+    } else {
+        dropdown.classList.add('hidden');
+    }
 });
 
 let dropdownIndex = -1;
