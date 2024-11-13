@@ -31,7 +31,33 @@ const tipos = [
     { tipo: 'init', emote: '🎉', descricao: 'Início do projeto' }
 ];
 
-// Função para atualizar a pré-visualização
+// Seleção do botão de alternância de visualização
+const toggleViewBtn = document.getElementById('toggle-view-btn');
+let isGitCommandView = false;
+
+// Função para alternar visualização
+function alternarVisualizacao() {
+    isGitCommandView = !isGitCommandView;
+
+    if (isGitCommandView) {
+        atualizarVisualizacaoGit();
+        toggleViewBtn.textContent = 'Mostrar Pré-visualização Padrão';
+    } else {
+        atualizarPreview();
+        toggleViewBtn.textContent = 'Mostrar Comando Git';
+    }
+}
+
+// Função para atualizar visualização de comando git
+function atualizarVisualizacaoGit() {
+    const commitMessage = previewText.textContent;
+    previewText.textContent = `git commit -m "${commitMessage}"`;
+}
+
+// Adicionar evento ao botão de alternância
+toggleViewBtn.addEventListener('click', alternarVisualizacao);
+
+// Atualizar a pré-visualização
 function atualizarPreview() {
     const tipo = tipoInput.value || 'init';
     const emote = emoteCorrespondente(tipo);
@@ -44,8 +70,21 @@ function atualizarPreview() {
 
     const commitMessage = `${emote} ${tipo}${escopo}${breakingChange}: ${descricao}${mensagemAdicional}${rodape}`;
 
-    previewText.textContent = commitMessage;
+    // Atualizar texto da pré-visualização conforme o estado da visualização
+    if (isGitCommandView) {
+        previewText.textContent = `git commit -m "${commitMessage}"`;
+    } else {
+        previewText.textContent = commitMessage;
+    }
 }
+
+// Adicionar evento para atualizar pré-visualização
+[tipoInput, escopoInput, descricaoInput, mensagemInput, rodapeInput, breakingChangeCheckbox].forEach(input => {
+    input.addEventListener('input', atualizarPreview);
+});
+
+// Inicializar a pré-visualização
+atualizarPreview();
 
 // Função para obter o emote correspondente
 function emoteCorrespondente(tipo) {
@@ -379,6 +418,3 @@ function handleKeyboardShortcuts(event) {
 
 // Adiciona o evento de escuta para pressionamento de teclas
 document.addEventListener('keydown', handleKeyboardShortcuts);
-
-// Inicializar a pré-visualização
-atualizarPreview();

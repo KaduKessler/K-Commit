@@ -308,6 +308,26 @@ form {
   text-align: left;
 }
 
+.view-toggle {
+  text-align: center;
+  margin-top: 10px;
+}
+
+#toggle-view-btn {
+  padding: 10px 20px;
+  background-color: var(--button-bg);
+  border: none;
+  border-radius: 5px;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+#toggle-view-btn:hover {
+  background-color: var(--button-hover-bg);
+}
+
 /* Ocultar elementos */
 .hidden {
   display: none;
