@@ -162,9 +162,9 @@ clearBtn.addEventListener('click', () => {
     // Reinicia o emote para 🎉 (primeiro commit)
     emoteSpan.textContent = '🎉';
 
-    // Atualiza os contadores para "0 caracteres"
-    escopoCounter.textContent = '0 caracteres';
-    descricaoCounter.textContent = '0 caracteres';
+    // Atualiza os contadores de caracteres para zero
+    atualizarContador(escopoInput, escopoCounter, 50);
+    atualizarContador(descricaoInput, descricaoCounter, 72);
 
     // Oculta os contadores após a limpeza
     escopoCounter.classList.remove('active');
@@ -340,6 +340,35 @@ function playKeySound(event) {
 inputFields.forEach(field => {
     field.addEventListener('keydown', playKeySound);
 });
+
+// Atalhos de teclado
+function handleKeyboardShortcuts(event) {
+    if (event.altKey) {
+        switch (event.key.toLowerCase()) {
+            case 'c': // ALT + C | Copiar mensagem de commit
+                if (copyBtn) {
+                    copyBtn.click();
+                    event.preventDefault();
+                }
+                break;
+            case 'l': // ALT + L | Limpar os campos
+                if (clearBtn) {
+                    clearBtn.click();
+                    event.preventDefault();
+                }
+                break;
+            case 't': // ALT + T | Alternar tema
+                if (toggleThemeBtn) {
+                    toggleThemeBtn.click();
+                    event.preventDefault();
+                }
+                break;
+        }
+    }
+}
+
+// Adiciona o evento de escuta para pressionamento de teclas
+document.addEventListener('keydown', handleKeyboardShortcuts);
 
 // Inicializar a pré-visualização
 atualizarPreview();
