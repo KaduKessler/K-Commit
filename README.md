@@ -52,10 +52,9 @@ Para facilitar a criação de mensagens de commit seguindo o padrão **K-Commit*
 ## 🧾 **Boas Práticas**
 
 - **Commits pequenos e frequentes**: Facilitam o acompanhamento das mudanças.
-- **Descrição clara**: Indica o que foi alterado e o motivo.
+- **Descrição clara e concisa**: Indica o que foi alterado e o motivo.
 - **Escopo opcional, mas recomendado**: Em projetos maiores, especifica a área afetada.
 - **Rodapés para informações extras**: Como referências a issues.
-- **Uso do imperativo**: As mensagens de commit devem começar com verbos no modo imperativo (ex.: "Adiciona", "Corrige").
 - **Consistência**: Mantenha o uso consistente de emojis e formatos de mensagem.
 
 ---
