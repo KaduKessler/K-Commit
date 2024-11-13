@@ -258,6 +258,11 @@ form {
   background-color: var(--button-hover-bg);
 }
 
+.dropdown li.highlighted {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+}
+
 /* Botões */
 .buttons {
   display: flex;

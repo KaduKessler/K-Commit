@@ -77,10 +77,56 @@ tipoInput.addEventListener('input', () => {
     dropdown.classList.toggle('hidden', filtrados.length === 0 || !valor);
 });
 
-// Fechar o dropdown quando clicar fora
+let dropdownIndex = -1;
+
+tipoInput.addEventListener('keydown', (e) => {
+    const dropdownItems = [...dropdown.querySelectorAll('li')];
+
+    if (dropdownItems.length > 0) {
+        if (e.key === 'ArrowDown') {
+            dropdownIndex = (dropdownIndex + 1) % dropdownItems.length;
+            atualizarDropdownFocus(dropdownItems);
+            e.preventDefault();
+        } else if (e.key === 'ArrowUp') {
+            dropdownIndex = (dropdownIndex - 1 + dropdownItems.length) % dropdownItems.length;
+            atualizarDropdownFocus(dropdownItems);
+            e.preventDefault();
+        } else if (e.key === 'Tab') {
+            if (dropdownIndex >= 0) {
+                dropdownItems[dropdownIndex].click();
+                dropdownIndex = -1;
+                e.preventDefault();
+            } else {
+                dropdown.classList.add('hidden');
+            }
+        } else if (e.key === 'Enter') {
+            if (dropdownIndex >= 0) {
+                dropdownItems[dropdownIndex].click();
+                dropdownIndex = -1;
+                e.preventDefault();
+            }
+        }
+    } else if (e.key === 'Tab') {
+        dropdown.classList.add('hidden');
+    }
+});
+
+function atualizarDropdownFocus(dropdownItems) {
+    dropdownItems.forEach((item, index) => {
+        if (index === dropdownIndex) {
+            item.classList.add('highlighted');
+            item.scrollIntoView({ block: 'nearest' });
+        } else {
+            item.classList.remove('highlighted');
+        }
+    });
+}
+
+// Fechar o dropdown ao clicar fora
 document.addEventListener('click', (e) => {
     if (!tipoInput.contains(e.target) && !dropdown.contains(e.target)) {
         dropdown.classList.add('hidden');
+        dropdownIndex = -1;
     }
 });
 
