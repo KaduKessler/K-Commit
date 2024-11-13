@@ -435,3 +435,76 @@ function handleKeyboardShortcuts(event) {
 
 // Adiciona o evento de escuta para pressionamento de teclas
 document.addEventListener('keydown', handleKeyboardShortcuts);
+
+// Elementos do modal
+const emojiModal = document.getElementById('emoji-modal');
+const closeModalBtn = document.querySelector('.close-modal');
+const openModalBtn = document.getElementById('open-emoji-modal');
+const typeSelector = document.getElementById('type-selector');
+const emojiInput = document.getElementById('emoji-input');
+const saveEmojiBtn = document.getElementById('save-emoji');
+const resetEmojisBtn = document.getElementById('reset-emojis');
+
+// Abrir modal
+openModalBtn.addEventListener('click', () => {
+    emojiModal.classList.remove('hidden');
+});
+
+// Fechar modal ao clicar no botão "X"
+closeModalBtn.addEventListener('click', () => {
+    emojiModal.classList.add('hidden');
+});
+
+// Fechar modal ao clicar fora do conteúdo
+window.addEventListener('click', (e) => {
+    if (e.target === emojiModal) {
+        emojiModal.classList.add('hidden');
+    }
+});
+
+// Função para carregar opções no select
+function carregarOpcoesTipos() {
+    typeSelector.innerHTML = '';
+    tipos.forEach((t) => {
+        const option = document.createElement('option');
+        option.value = t.tipo;
+        option.textContent = `${t.emote} ${t.tipo}`;
+        typeSelector.appendChild(option);
+    });
+}
+
+// Função para salvar emoji personalizado
+function salvarEmojiPersonalizado() {
+    const selectedType = typeSelector.value;
+    const newEmoji = emojiInput.value;
+
+    if (selectedType && newEmoji) {
+        const tipoObj = tipos.find((t) => t.tipo === selectedType);
+        if (tipoObj) {
+            tipoObj.emote = newEmoji;
+            localStorage.setItem('custom-emojis', JSON.stringify(tipos));
+            alert('Emoji salvo com sucesso!');
+            carregarOpcoesTipos();
+        }
+    }
+}
+
+// Função para redefinir emojis para o padrão
+function redefinirEmojisPadrao() {
+    localStorage.removeItem('custom-emojis');
+    alert('Emojis redefinidos para o padrão.');
+    location.reload(); // Atualiza a página para restaurar os valores padrão
+}
+
+// Eventos dos botões
+saveEmojiBtn.addEventListener('click', salvarEmojiPersonalizado);
+resetEmojisBtn.addEventListener('click', redefinirEmojisPadrao);
+
+// Carregar emojis personalizados ao iniciar
+window.addEventListener('load', () => {
+    const savedEmojis = localStorage.getItem('custom-emojis');
+    if (savedEmojis) {
+        tipos.splice(0, tipos.length, ...JSON.parse(savedEmojis));
+    }
+    carregarOpcoesTipos();
+});
