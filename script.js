@@ -429,7 +429,55 @@ function handleKeyboardShortcuts(event) {
                     event.preventDefault();
                 }
                 break;
+            case 's': // ALT + S | Alternar som
+                if (toggleSoundBtn) {
+                    toggleSoundBtn.click();
+                    event.preventDefault();
+                }
+                break;
+            case 'v': // ALT + V | Alternar visualização
+                if (toggleViewBtn) {
+                    toggleViewBtn.click();
+                    event.preventDefault();
+                }
+                break;
+            case 'e': // ALT + E | Abrir modal de emojis
+                if (openModalBtn) {
+                    openModalBtn.click();
+                    event.preventDefault();
+                }
+                break;
+            case 'arrowup': // ALT + ↑ | Navegar para o campo anterior
+                focusPreviousField();
+                event.preventDefault();
+                break;
+            case 'arrowdown': // ALT + ↓ | Navegar para o próximo campo
+                focusNextField();
+                event.preventDefault();
+                break;
         }
+    }
+    if (event.key === 'Escape') { // Esc | Fechar modal
+        const modal = document.querySelector('.modal:not(.hidden)');
+        if (modal) {
+            modal.classList.add('hidden');
+        }
+    }
+}
+
+function focusNextField() {
+    const focusableElements = Array.from(document.querySelectorAll('input, textarea, button'));
+    const index = focusableElements.indexOf(document.activeElement);
+    if (index >= 0 && index < focusableElements.length - 1) {
+        focusableElements[index + 1].focus();
+    }
+}
+
+function focusPreviousField() {
+    const focusableElements = Array.from(document.querySelectorAll('input, textarea, button'));
+    const index = focusableElements.indexOf(document.activeElement);
+    if (index > 0) {
+        focusableElements[index - 1].focus();
     }
 }
 
