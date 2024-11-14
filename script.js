@@ -83,6 +83,7 @@ breakingChangeCheckbox.addEventListener('change', () => {
     } else {
         breakingReasonGroup.classList.add('hidden');
         breakingReasonInput.value = ''; // Limpar o campo ao desmarcar o checkbox
+        atualizarPreview(); // Atualizar a pré-visualização
     }
 });
 
