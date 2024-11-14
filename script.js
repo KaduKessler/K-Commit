@@ -471,12 +471,39 @@ function handleKeyboardShortcuts(event) {
                 focusNextField();
                 event.preventDefault();
                 break;
+            case '1': // ALT + 1 | Selecionar o campo de tipo
+                tipoInput.focus();
+                event.preventDefault();
+                break;
+            case '2': // ALT + 2 | Selecionar o campo de escopo
+                escopoInput.focus();
+                event.preventDefault();
+                break;
+            case '3': // ALT + 3 | Selecionar o campo de descrição
+                descricaoInput.focus();
+                event.preventDefault();
+                break;
+            case '4': // ALT + 4 | Selecionar o campo de mensagem
+                mensagemInput.focus();
+                event.preventDefault();
+                break;
+            case '5': // ALT + 5 | Selecionar o campo de rodapé
+                rodapeInput.focus();
+                event.preventDefault();
+                break;
+            case '6': // ALT + 6 | Selecionar o campo de motivo de Breaking Change
+                breakingChangeCheckbox.click();
+                breakingReasonInput.focus();
+                event.preventDefault();
+                break;
         }
     }
-    if (event.key === 'Escape') { // Esc | Fechar modal
+    if (event.key === 'Escape') { // Esc | Fechar modal ou desfocar o elemento ativo
         const modal = document.querySelector('.modal:not(.hidden)');
         if (modal) {
             modal.classList.add('hidden');
+        } else {
+            document.activeElement.blur();
         }
     }
 }
