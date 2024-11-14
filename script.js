@@ -238,10 +238,11 @@ copyBtn.addEventListener('click', () => {
 // Botão de limpar
 clearBtn.addEventListener('click', () => {
     // Limpa todos os campos de input
-    [tipoInput, escopoInput, descricaoInput, mensagemInput, rodapeInput].forEach(input => input.value = '');
+    [tipoInput, escopoInput, descricaoInput, mensagemInput, rodapeInput, breakingReasonInput].forEach(input => input.value = '');
 
     // Reseta o estado do checkbox
     breakingChangeCheckbox.checked = false;
+    breakingReasonGroup.classList.add('hidden'); // Ocultar o campo de motivo do Breaking Change
 
     // Reinicia o emote para 🎉 (primeiro commit)
     emoteSpan.textContent = '🎉';
