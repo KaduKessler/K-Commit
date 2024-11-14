@@ -5,6 +5,8 @@ const descricaoInput = document.getElementById('descricao');
 const mensagemInput = document.getElementById('mensagem');
 const rodapeInput = document.getElementById('rodape');
 const breakingChangeCheckbox = document.getElementById('breaking-change');
+const breakingReasonGroup = document.getElementById('breaking-reason-group');
+const breakingReasonInput = document.getElementById('breaking-reason');
 const previewText = document.getElementById('preview-text');
 const emoteSpan = document.getElementById('emote');
 const dropdown = document.getElementById('dropdown');
@@ -74,6 +76,16 @@ function atualizarVisualizacaoGit() {
 // Adicionar evento ao botão de alternância
 toggleViewBtn.addEventListener('click', alternarVisualizacao);
 
+// Exibir/ocultar campo para motivo do Breaking Change
+breakingChangeCheckbox.addEventListener('change', () => {
+    if (breakingChangeCheckbox.checked) {
+        breakingReasonGroup.classList.remove('hidden');
+    } else {
+        breakingReasonGroup.classList.add('hidden');
+        breakingReasonInput.value = ''; // Limpar o campo ao desmarcar o checkbox
+    }
+});
+
 // Atualizar a pré-visualização
 function atualizarPreview() {
     const tipo = tipoInput.value || 'init';
@@ -84,8 +96,11 @@ function atualizarPreview() {
     const descricao = descricaoInput.value || 'Primeiro commit';
     const mensagemAdicional = mensagemInput.value ? `\n\n${mensagemInput.value}` : '';
     const rodape = rodapeInput.value ? `\n\n${rodapeInput.value}` : '';
+    const breakingReason = breakingReasonInput.value
+        ? `\n\nBREAKING CHANGE: ${breakingReasonInput.value}`
+        : '';
 
-    const commitMessage = `${emote} ${tipo}${escopo}${breakingChange}: ${descricao}${mensagemAdicional}${rodape}`;
+    const commitMessage = `${emote} ${tipo}${escopo}${breakingChange}: ${descricao}${mensagemAdicional}${rodape}${breakingReason}`;
 
     // Atualizar texto da pré-visualização conforme o estado da visualização
     if (isGitCommandView) {
@@ -96,7 +111,7 @@ function atualizarPreview() {
 }
 
 // Adicionar evento para atualizar pré-visualização
-[tipoInput, escopoInput, descricaoInput, mensagemInput, rodapeInput, breakingChangeCheckbox].forEach(input => {
+[tipoInput, escopoInput, descricaoInput, mensagemInput, rodapeInput, breakingChangeCheckbox, breakingReasonInput].forEach(input => {
     input.addEventListener('input', atualizarPreview);
 });
 

@@ -430,3 +430,21 @@ button {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+#breaking-reason {
+  width: 100%;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  padding: 12px;
+  border-radius: 5px;
+  color: var(--text-color);
+  font-size: 16px;
+  outline: none;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.3s;
+}
+
+#breaking-reason:focus {
+  border-color: var(--accent-color);
+}
