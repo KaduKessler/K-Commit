@@ -389,7 +389,7 @@ function preloadKeySounds() {
 preloadKeySounds();
 
 // Selecionar todos os campos de entrada e textarea
-const inputFields = [tipoInput, escopoInput, descricaoInput, mensagemInput, rodapeInput];
+const inputFields = [tipoInput, escopoInput, descricaoInput, mensagemInput, rodapeInput, breakingReasonInput];
 
 // Função para reproduzir o som da tecla
 function playKeySound(event) {
