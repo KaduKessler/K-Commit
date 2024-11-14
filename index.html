@@ -27,7 +27,8 @@
             <h1>K-Commit Generator</h1>
         </div>
         <div class="header-icons">
-            <button id="open-emoji-modal" class="icon-button" title="Abrir Modal de Emojis">
+            <button id="open-emoji-modal" class="icon-button" title="Abrir Modal de Emojis"
+                aria-label="Abrir Modal de Emojis">
                 <i id="emoji-icon" class="fas fa-smile" aria-hidden="true"></i>
             </button>
             <button id="toggle-sound" class="icon-button" type="button" aria-label="Ativar/Desativar Som">
@@ -44,71 +45,83 @@
             <form id="commit-form">
                 <!-- Tipo de Commit -->
                 <div class="form-group">
-                    <input type="text" id="tipo" placeholder="Tipo de Commit (e.g., feat, fix)" autocomplete="off">
+                    <input type="text" id="tipo" placeholder="Tipo de Commit (e.g., feat, fix)" autocomplete="off"
+                        aria-describedby="tipo-desc">
                     <span id="emote" class="emote">🎉</span>
-                    <ul id="dropdown" class="dropdown hidden"></ul>
+                    <ul id="dropdown" class="dropdown hidden" aria-label="Sugestões de Tipo de Commit"></ul>
+                    <small id="tipo-desc" class="sr-only">Digite o tipo de commit, por exemplo, feat ou fix.</small>
                 </div>
 
                 <!-- Escopo (Opcional) -->
                 <div class="form-group">
-                    <input type="text" id="escopo" placeholder="Escopo (opcional)">
+                    <input type="text" id="escopo" placeholder="Escopo (opcional)" aria-describedby="escopo-desc">
                     <small id="escopo-counter" class="char-counter hidden"
                         title="Tente manter o escopo em até 50 caracteres.">0
                         caracteres</small>
+                    <small id="escopo-desc" class="sr-only">Digite o escopo do commit, se aplicável.</small>
                 </div>
 
                 <!-- Descrição -->
                 <div class="form-group">
-                    <input type="text" id="descricao" placeholder="Descrição do Commit">
+                    <input type="text" id="descricao" placeholder="Descrição do Commit"
+                        aria-describedby="descricao-desc">
                     <small id="descricao-counter" class="char-counter hidden"
                         title="Tente manter a descrição em até 72 caracteres.">0 caracteres</small>
+                    <small id="descricao-desc" class="sr-only">Digite a descrição do commit.</small>
                 </div>
 
                 <!-- Mensagem Adicional (Opcional) -->
                 <div class="form-group">
-                    <textarea id="mensagem" placeholder="Mensagem Adicional (opcional)"></textarea>
+                    <textarea id="mensagem" placeholder="Mensagem Adicional (opcional)"
+                        aria-describedby="mensagem-desc"></textarea>
+                    <small id="mensagem-desc" class="sr-only">Digite uma mensagem adicional, se necessário.</small>
                 </div>
 
                 <!-- Rodapé (Opcional) -->
                 <div class="form-group">
-                    <input type="text" id="rodape" placeholder="Rodapé (opcional)">
+                    <input type="text" id="rodape" placeholder="Rodapé (opcional)" aria-describedby="rodape-desc">
+                    <small id="rodape-desc" class="sr-only">Digite o rodapé do commit, se aplicável.</small>
                 </div>
 
                 <!-- BREAKING CHANGE -->
                 <div class="form-group checkbox-group">
                     <label>
-                        <input type="checkbox" id="breaking-change">
+                        <input type="checkbox" id="breaking-change" aria-label="Marcar como BREAKING CHANGE">
                         <span>BREAKING CHANGE</span>
                     </label>
                 </div>
 
                 <!-- Botões -->
                 <div class="buttons">
-                    <button id="copy-btn" type="button">Copiar</button>
-                    <button id="clear-btn" type="button">Limpar</button>
+                    <button id="copy-btn" type="button" aria-label="Copiar mensagem de commit">Copiar</button>
+                    <button id="clear-btn" type="button" aria-label="Limpar formulário">Limpar</button>
                 </div>
             </form>
 
             <!-- Pré-visualização -->
             <section id="preview-section">
                 <h2>Pré-visualização</h2>
-                <pre id="preview-text">🎉 init: Primeiro commit</pre>
+                <pre id="preview-text" aria-live="polite">🎉 init: Primeiro commit</pre>
                 <div class="view-toggle">
-                    <button id="toggle-view-btn">Mostrar Comando Git</button>
+                    <button id="toggle-view-btn" aria-label="Mostrar Comando Git">Mostrar Comando Git</button>
                 </div>
             </section>
 
-            <div id="emoji-modal" class="modal hidden">
+            <div id="emoji-modal" class="modal hidden" aria-hidden="true" role="dialog"
+                aria-labelledby="emoji-modal-title">
                 <div class="modal-content">
-                    <span class="close-modal">&times;</span>
-                    <h3>Personalizar Emojis</h3>
+                    <span class="close-modal" aria-label="Fechar Modal">&times;</span>
+                    <h3 id="emoji-modal-title">Personalizar Emojis</h3>
                     <div class="customization-form">
-                        <select id="type-selector" title="Selecione o tipo de commit">
+                        <select id="type-selector" title="Selecione o tipo de commit"
+                            aria-label="Selecione o tipo de commit">
                             <!-- Opções serão carregadas dinamicamente pelo JavaScript -->
                         </select>
-                        <input id="emoji-input" type="text" maxlength="2" placeholder="Digite um emoji">
-                        <button id="save-emoji" type="button">Salvar</button>
-                        <button id="reset-emojis" type="button">Redefinir Padrões</button>
+                        <input id="emoji-input" type="text" maxlength="2" placeholder="Digite um emoji"
+                            aria-label="Digite um emoji">
+                        <button id="save-emoji" type="button" aria-label="Salvar emoji">Salvar</button>
+                        <button id="reset-emojis" type="button" aria-label="Redefinir emojis para padrões">Redefinir
+                            Padrões</button>
                     </div>
                 </div>
             </div>
