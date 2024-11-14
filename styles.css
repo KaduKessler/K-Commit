@@ -448,3 +448,9 @@ button {
 #breaking-reason:focus {
   border-color: var(--accent-color);
 }
+
+/* Estilo geral para elementos focados */
+:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
