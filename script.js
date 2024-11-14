@@ -33,6 +33,8 @@ const tipos = [
     { tipo: 'init', emote: '🎉', descricao: 'Início do projeto' }
 ];
 
+const tiposOriginais = JSON.parse(JSON.stringify(tipos));
+
 // Seleção do botão de alternância de visualização
 const toggleViewBtn = document.getElementById('toggle-view-btn');
 let isGitCommandView = false;
@@ -574,7 +576,7 @@ function salvarEmojiPersonalizado() {
         if (tipoObj) {
             tipoObj.emote = newEmoji;
             localStorage.setItem('custom-emojis', JSON.stringify(tipos));
-            alert('Emoji salvo com sucesso!');
+            showToast('Emoji salvo com sucesso!', 'success');
             carregarOpcoesTipos();
         }
     }
@@ -582,9 +584,17 @@ function salvarEmojiPersonalizado() {
 
 // Função para redefinir emojis para o padrão
 function redefinirEmojisPadrao() {
+    // Substituir os valores em `tipos` pela cópia dos valores originais
+    tipos.splice(0, tipos.length, ...tiposOriginais);
+
+    // Remover configurações personalizadas do localStorage
     localStorage.removeItem('custom-emojis');
-    alert('Emojis redefinidos para o padrão.');
-    location.reload(); // Atualiza a página para restaurar os valores padrão
+
+    // Atualizar as opções no seletor
+    carregarOpcoesTipos();
+
+    // Exibir mensagem de confirmação
+    showToast('Emojis redefinidos para o padrão.', 'info');
 }
 
 // Eventos dos botões
@@ -599,3 +609,18 @@ window.addEventListener('load', () => {
     }
     carregarOpcoesTipos();
 });
+
+function showToast(message, type = 'info') {
+    const toastContainer = document.getElementById('toast-container');
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+
+    toastContainer.appendChild(toast);
+
+    // Remover o toast após a animação
+    setTimeout(() => {
+        toast.remove();
+    }, 5000);
+}

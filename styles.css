@@ -454,3 +454,64 @@ button {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
 }
+
+/* Estilo para o container de toasts */
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Estilo para os toasts */
+.toast {
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateX(100%);
+  animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards;
+}
+
+.toast.success {
+  background-color: #4caf50; /* Verde */
+}
+
+.toast.error {
+  background-color: #f44336; /* Vermelho */
+}
+
+.toast.info {
+  background-color: #2196f3; /* Azul */
+}
+
+.toast.warning {
+  background-color: #ff9800; /* Laranja */
+}
+
+/* Animações */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
