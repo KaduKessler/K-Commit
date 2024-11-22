@@ -89,10 +89,10 @@ body {
 }
 
 @keyframes rotate {
-  from {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
   }
 }
@@ -280,11 +280,28 @@ form {
   color: var(--text-color);
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .buttons button:hover {
   background-color: var(--button-hover-bg);
+  transform: scale(1.05);
+}
+
+.button {
+  padding: 12px;
+  background-color: var(--button-bg);
+  border: none;
+  border-radius: 5px;
+  color: var(--text-color);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.button:hover {
+  background-color: var(--button-hover-bg);
+  transform: scale(1.05);
 }
 
 /* Pré-visualização */
@@ -313,21 +330,6 @@ form {
   margin-top: 10px;
 }
 
-#toggle-view-btn {
-  padding: 10px 20px;
-  background-color: var(--button-bg);
-  border: none;
-  border-radius: 5px;
-  color: var(--text-color);
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
-}
-
-#toggle-view-btn:hover {
-  background-color: var(--button-hover-bg);
-}
-
 /* Ocultar elementos */
 .hidden {
   display: none;
@@ -336,8 +338,10 @@ form {
 /* Animações */
 input,
 textarea,
-button {
-  transition: background-color 0.3s, border-color 0.3s;
+button,
+.icon-button,
+.checkbox-group input[type="checkbox"] {
+  transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
 }
 
 /* Modal Overlay */
@@ -399,11 +403,12 @@ button {
   border-radius: 4px;
   font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .customization-form button:hover {
   background-color: var(--button-hover-bg);
+  transform: scale(1.05);
 }
 
 .customization-form input,
@@ -451,6 +456,12 @@ button {
 
 /* Estilo geral para elementos focados */
 :focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Melhorias de acessibilidade */
+:focus-visible {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
 }
