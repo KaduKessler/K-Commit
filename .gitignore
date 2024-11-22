@@ -1,0 +1,26 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Logs
+logs/
+*.log
+
+# Diretórios do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Diretórios do editor
+.vscode/
+
+# Arquivos de build
+dist/
+build/
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Arquivos de cache
+.cache/
