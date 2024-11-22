@@ -112,20 +112,25 @@
                 </div>
             </section>
 
-            <div id="toast-container" class="toast-container"></div>
+            <div id="toast-container" class="toast-container" aria-live="polite" role="alert"></div>
 
             <div id="emoji-modal" class="modal hidden" aria-hidden="true" role="dialog"
                 aria-labelledby="emoji-modal-title">
                 <div class="modal-content">
-                    <span class="close-modal" aria-label="Fechar Modal">&times;</span>
+                    <span class="close-modal" aria-label="Fechar Modal" tabindex="0">&times;</span>
                     <h3 id="emoji-modal-title">Personalizar Emojis</h3>
                     <div class="customization-form">
                         <select id="type-selector" title="Selecione o tipo de commit"
-                            aria-label="Selecione o tipo de commit">
+                            aria-label="Selecione o tipo de commit" aria-describedby="type-selector-desc">
                             <!-- Opções serão carregadas dinamicamente pelo JavaScript -->
                         </select>
+                        <small id="type-selector-desc" class="sr-only">Escolha o tipo de commit da lista.</small>
+
                         <input id="emoji-input" type="text" maxlength="2" placeholder="Digite um emoji"
-                            aria-label="Digite um emoji">
+                            aria-label="Digite um emoji" aria-describedby="emoji-input-desc">
+                        <small id="emoji-input-desc" class="sr-only">Digite um emoji para o tipo de commit
+                            selecionado.</small>
+
                         <button id="save-emoji" type="button" aria-label="Salvar emoji">Salvar</button>
                         <button id="reset-emojis" type="button" aria-label="Redefinir emojis para padrões">Redefinir
                             Padrões</button>
