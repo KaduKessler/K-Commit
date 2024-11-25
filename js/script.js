@@ -616,7 +616,20 @@ function showToast(message, type = 'info') {
 
     const toast = document.createElement('div');
     toast.className = `toast ${type}`;
-    toast.textContent = message;
+
+    const icon = document.createElement('i');
+    icon.className = `toast-icon fas ${getIconClass(type)}`;
+    toast.appendChild(icon);
+
+    const text = document.createElement('span');
+    text.textContent = message;
+    toast.appendChild(text);
+
+    const closeBtn = document.createElement('span');
+    closeBtn.className = 'close-toast';
+    closeBtn.innerHTML = '&times;';
+    closeBtn.addEventListener('click', () => toast.remove());
+    toast.appendChild(closeBtn);
 
     toastContainer.appendChild(toast);
 
@@ -624,4 +637,19 @@ function showToast(message, type = 'info') {
     setTimeout(() => {
         toast.remove();
     }, 5000);
+}
+
+function getIconClass(type) {
+    switch (type) {
+        case 'success':
+            return 'fa-check-circle';
+        case 'error':
+            return 'fa-times-circle';
+        case 'info':
+            return 'fa-info-circle';
+        case 'warning':
+            return 'fa-exclamation-circle';
+        default:
+            return 'fa-info-circle';
+    }
 }

@@ -487,6 +487,25 @@ button,
   opacity: 0;
   transform: translateX(100%);
   animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toast .toast-icon {
+  margin-right: 10px;
+}
+
+.toast .close-toast {
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--text-color);
+  transition: color 0.3s;
+}
+
+.toast .close-toast:hover {
+  color: var(--accent-color);
 }
 
 .toast.success {
